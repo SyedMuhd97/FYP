@@ -1,0 +1,52 @@
+CREATE TABLE product(
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` varchar(100) NOT NULL,
+  `price` varchar(50) NOT NULL,
+  `category` varchar(50) NOT NULL,
+  `qty`int(11) not null,
+  `featured` varchar(50) NOT NULL DEFAULT 'yes',
+  `image` varchar(255) NOT NULL,
+   `userId` varchar (6)  Null DEFAULT 'admin',
+FOREIGN KEY (userId) REFERENCES user(username)
+
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+
+CREATE TABLE userregisterproduct (
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` varchar(100) NOT NULL,
+  `price` varchar(50) NOT NULL,
+   `qty` varchar(50) NOT NULL,
+  `category` varchar(50) NOT NULL,
+ `featured` varchar(50) NOT NULL DEFAULT 'yes',
+ `pRegisterStatus` varchar(50) NOT NULL DEFAULT 'pending',
+  `image` varchar(255) NOT NULL,
+  `userId` varchar (6),
+FOREIGN KEY (userId) REFERENCES user(username)
+
+   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+CREATE TABLE `cartOrder` (
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `orderId` varchar(100) NOT NULL,
+  `orderDate` date NOT NULL,
+ `buyerID` int(6) NOT NULL FOREIGN KEY (buyerID) REFERENCES user(username),
+
+
+
+   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `payment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `totalPrice`int(11) NOT NULL,
+ `receipt` varchar(255) NOT NULL,
+  `paymentStatus` varchar(50) NOT NULL DEFAULT 'pending',
+payDetail varchar(50) NOT  NULL DEFAULT 'no detail',
+  `userId` varchar (6),
+FOREIGN KEY (userId) REFERENCES user(username)
+
+   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
